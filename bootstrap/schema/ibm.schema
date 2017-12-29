@@ -1,0 +1,11 @@
+attributetype ( 1.3.18.0.2.4.4011 NAME 'ibm-socialPersonId' DESC 'IBM Connections User Profile Identifier for Social Business' EQUALITY caseIgnoreIA5Match SUBSTR caseIgnoreIA5SubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 SINGLE-VALUE )
+attributetype ( 1.3.18.0.2.4.4012 NAME 'ibm-socialGroupId' DESC 'IBM Connections Group Identifier for Social Business' EQUALITY caseIgnoreIA5Match SUBSTR caseIgnoreIA5SubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 SINGLE-VALUE )
+attributetype ( 1.3.18.0.2.4.4013 NAME 'ibm-socialOrganizationId' DESC 'IBM Connections Organization Identifier for Social Business' EQUALITY caseIgnoreIA5Match SUBSTR caseIgnoreIA5SubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 SINGLE-VALUE )
+attributetype ( 1.3.18.0.2.4.4014 NAME 'ibm-socialPersonalRole' DESC 'IBM Connections Personal Role for Social Business' EQUALITY caseIgnoreMatch SUBSTR caseIgnoreSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{128} )
+attributetype ( 1.3.18.0.2.4.4015 NAME 'ibm-socialOrganizationalHostURL' DESC 'IBM Connections Organizational Host-based URL for Social Business' EQUALITY caseIgnoreMatch SUBSTR caseIgnoreSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{128} )
+attributetypes: ( 1.3.18.0.2.4.2323 NAME 'ibm-appUUID' DESC 'An string to uniquely identify an entry.  It is unique for all entries, static, not reused. The format of this string may follow the string form for a DCE-style UUID (e.g. 1D919000-C758-1C34-92BD-001212121212 ).  Uniqueness is not enforced by server implementations.' EQUALITY caseExactMatch ORDERING caseExactOrderingMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+
+objectclass ( 1.3.18.0.2.6.705 NAME 'ibm-socialPerson' DESC 'IBM Connections User Profile Object' AUXILIARY MUST ibm-socialPersonId MAY ( ibm-socialOrganizationId $ ibm-socialPersonalRole ) )
+objectclass ( 1.3.18.0.2.6.706 NAME 'ibm-socialGroup' DESC 'IBM Connections Group Object' AUXILIARY MUST ibm-socialGroupId MAY ibm-socialOrganizationId )
+objectclass ( 1.3.18.0.2.6.707 NAME 'ibm-socialOrganization' DESC 'IBM Connections Organization Object' AUXILIARY MUST ibm-socialOrganizationId MAY ibm-socialOrganizationalHostURL )
+objectclass ( 1.3.18.0.2.6.475 NAME 'ibm-appUUIDAux' DESC 'Auxiliary class for unique static not-reused entry identifier' SUP top AUXILIARY MAY ibm-appUUID )
